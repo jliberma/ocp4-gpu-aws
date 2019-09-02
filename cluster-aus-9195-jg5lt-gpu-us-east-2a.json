@@ -1,0 +1,132 @@
+{
+    "apiVersion": "machine.openshift.io/v1beta1",
+    "kind": "MachineSet",
+    "metadata": {
+        "creationTimestamp": "2019-08-30T02:08:37Z",
+        "generation": 1,
+        "labels": {
+            "machine.openshift.io/cluster-api-cluster": "cluster-aus-9195-jg5lt"
+        },
+        "name": "cluster-aus-9195-jg5lt-gpu-us-east-2a",
+        "namespace": "openshift-machine-api",
+        "resourceVersion": "11444",
+        "selfLink": "/apis/machine.openshift.io/v1beta1/namespaces/openshift-machine-api/machinesets/cluster-aus-9195-jg5lt-gpu-us-east-2a",
+        "uid": "1416edf0-cacb-11e9-99a0-025c368d2046"
+    },
+    "spec": {
+        "replicas": 1,
+        "selector": {
+            "matchLabels": {
+                "machine.openshift.io/cluster-api-cluster": "cluster-aus-9195-jg5lt",
+                "machine.openshift.io/cluster-api-machine-role": "worker",
+                "machine.openshift.io/cluster-api-machine-type": "worker",
+                "machine.openshift.io/cluster-api-machineset": "cluster-aus-9195-jg5lt-gpu-us-east-2a"
+            }
+        },
+        "template": {
+            "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                    "machine.openshift.io/cluster-api-cluster": "cluster-aus-9195-jg5lt",
+                    "machine.openshift.io/cluster-api-machine-role": "worker",
+                    "machine.openshift.io/cluster-api-machine-type": "worker",
+                    "machine.openshift.io/cluster-api-machineset": "cluster-aus-9195-jg5lt-gpu-us-east-2a"
+                }
+            },
+            "spec": {
+                "metadata": {
+                    "creationTimestamp": null
+                },
+                "providerSpec": {
+                    "value": {
+                        "ami": {
+                            "id": "ami-0649fd5d42859bdfc"
+                        },
+                        "apiVersion": "awsproviderconfig.openshift.io/v1beta1",
+                        "blockDevices": [
+                            {
+                                "ebs": {
+                                    "iops": 0,
+                                    "volumeSize": 120,
+                                    "volumeType": "gp2"
+                                }
+                            }
+                        ],
+                        "credentialsSecret": {
+                            "name": "aws-cloud-credentials"
+                        },
+                        "deviceIndex": 0,
+                        "iamInstanceProfile": {
+                            "id": "cluster-aus-9195-jg5lt-worker-profile"
+                        },
+                        "instanceType": "p3.2xlarge",
+                        "kind": "AWSMachineProviderConfig",
+                        "metadata": {
+                            "creationTimestamp": null
+                        },
+                        "placement": {
+                            "availabilityZone": "us-east-2a",
+                            "region": "us-east-2"
+                        },
+                        "publicIp": null,
+                        "securityGroups": [
+                            {
+                                "filters": [
+                                    {
+                                        "name": "tag:Name",
+                                        "values": [
+                                            "cluster-aus-9195-jg5lt-worker-sg"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "subnet": {
+                            "filters": [
+                                {
+                                    "name": "tag:Name",
+                                    "values": [
+                                        "cluster-aus-9195-jg5lt-private-us-east-2a"
+                                    ]
+                                }
+                            ]
+                        },
+                        "tags": [
+                            {
+                                "name": "kubernetes.io/cluster/cluster-aus-9195-jg5lt",
+                                "value": "owned"
+                            },
+                            {
+                                "name": "Stack",
+                                "value": "project ocp4-workshop-aus-9195"
+                            },
+                            {
+                                "name": "course_name",
+                                "value": "unknown"
+                            },
+                            {
+                                "name": "env_type",
+                                "value": "ocp4-workshop"
+                            },
+                            {
+                                "name": "guid",
+                                "value": "aus-9195"
+                            },
+                            {
+                                "name": "owner",
+                                "value": "jliberma@redhat.com"
+                            },
+                            {
+                                "name": "platform",
+                                "value": "unknown"
+                            }
+                        ],
+                        "userDataSecret": {
+                            "name": "worker-user-data"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

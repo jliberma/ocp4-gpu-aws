@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnet50
+  namespace: openshift-sro
+spec:
+  tolerations:
+    - key: nvidia.com/gpu
+      operator: Exists
+      effect: NoSchedule
+  serviceAccount: nvidia-device-plugin
+  serviceAccountName: nvidia-device-plugin
+  readOnlyRootFilesystem: true
+  restartPolicy: OnFailure
+  containers:
+  - name: tensorflow-resnet50
+    image: nvcr.io/nvidia/tensorflow:19.08-py3
+    env:
+      - name: NVIDIA_VISIBLE_DEVICES
+        value: all
+      - name: NVIDIA_DRIVER_CAPABILITIES
+        value: "compute,utility"
+      - name: NVIDIA_REQUIRE_CUDA  
+        value: "cuda>=5.0"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+    command: [ "/bin/sh" ]
+    args: [ "-c", "python nvidia-examples/cnn/resnet.py --layers=50 --precision=fp16"]
+    resources:
+      limits:
+        nvidia.com/gpu: 1 # requesting 1 GPU
+

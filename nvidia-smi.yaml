@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nvidia-smi
+  namespace: openshift-sro
+spec:
+  tolerations:
+    - key: nvidia.com/gpu
+      operator: Exists
+      effect: NoSchedule
+  serviceAccount: nvidia-device-plugin
+  serviceAccountName: nvidia-device-plugin
+  readOnlyRootFilesystem: true
+  restartPolicy: OnFailure
+  containers:
+  - name: nvidia-smi
+    image: nvidia/cuda
+    env:
+      - name: NVIDIA_VISIBLE_DEVICES
+        value: all
+      - name: NVIDIA_DRIVER_CAPABILITIES
+        value: "compute,utility"
+      - name: NVIDIA_REQUIRE_CUDA  
+        value: "cuda>=5.0"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+    command: [ nvidia-smi ]
+    resources:
+      limits:
+        nvidia.com/gpu: 1 # requesting 1 GPU
