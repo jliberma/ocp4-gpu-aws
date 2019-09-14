@@ -1,0 +1,59 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/4SSsW7zMAyE9/8xOP5wHWQrvHbo3qFLkYG2mUSNJAok5TYN8u6FhAQt6gSebPqOH8mDT4DJvZKo4wgdSI9Di9n2LO4LzXFsD4/aOl5N654M19DAwcUROnjyWY3khT1BA4EMRzSE7gQee/Ja3jAl6CAdjWXYP3AiQWMpDOUYyQp44JA4UrRbznMDEQPdkSR7Uuje6hHPwjmVCg65p63nj5ZlB5sGhJSzDNV65bxzr9D8rlZqaFlLw0TSV/N/2JybP3RMjj6NYklML+nMpgxZjcP100hbF11JcxmvxoI7uge+yINHVVqm9WjDfgapxy+1zm/iuHW7gKkGx2N5KMnkit4AxTGxi1bV8kOpUbSJfQ5lXReqaaLiWM64DvnJebbMSMnzMdykbc7/vgEAAP//AQAA//8jQdZg1wIAAA=="}'
+    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
+  creationTimestamp: "2019-09-13T18:21:16Z"
+  labels:
+    app: pytorch-operator
+    app.kubernetes.io/deploy-manager: ksonnet
+    ksonnet.io/component: pytorch-operator
+  name: pytorch-operator
+  resourceVersion: "38688"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterroles/pytorch-operator
+  uid: 46843b20-d653-11e9-a72e-02e4ddb8e1d8
+rules:
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - pytorchjobs
+  - pytorchjobs/statusn  - pytorchjobs/finalizers
+  verbs:
+  - '*'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - '*'
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - '*'
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  - pods
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  - events
+  verbs:
+  - '*'
+- apiGroups:
+  - apps
+  - extensions
+  resources:
+  - deployments
+  verbs:
+  - '*'

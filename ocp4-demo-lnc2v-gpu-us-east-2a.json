@@ -1,0 +1,108 @@
+{
+    "apiVersion": "machine.openshift.io/v1beta1",
+    "kind": "MachineSet",
+    "metadata": {
+        "creationTimestamp": "2019-09-13T16:50:56Z",
+        "generation": 1,
+        "labels": {
+            "machine.openshift.io/cluster-api-cluster": "ocp4-demo-lnc2v"
+        },
+        "name": "ocp4-demo-lnc2v-gpu-us-east-2a",
+        "namespace": "openshift-machine-api",
+        "resourceVersion": "9129",
+        "selfLink": "/apis/machine.openshift.io/v1beta1/namespaces/openshift-machine-api/machinesets/ocp4-demo-lnc2v-gpu-us-east-2a",
+        "uid": "a80ca700-d646-11e9-8044-02a34b453ef2"
+    },
+    "spec": {
+        "replicas": 1,
+        "selector": {
+            "matchLabels": {
+                "machine.openshift.io/cluster-api-cluster": "ocp4-demo-lnc2v",
+                "machine.openshift.io/cluster-api-machine-role": "worker",
+                "machine.openshift.io/cluster-api-machine-type": "worker",
+                "machine.openshift.io/cluster-api-machineset": "ocp4-demo-lnc2v-gpu-us-east-2a"
+            }
+        },
+        "template": {
+            "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                    "machine.openshift.io/cluster-api-cluster": "ocp4-demo-lnc2v",
+                    "machine.openshift.io/cluster-api-machine-role": "worker",
+                    "machine.openshift.io/cluster-api-machine-type": "worker",
+                    "machine.openshift.io/cluster-api-machineset": "ocp4-demo-lnc2v-gpu-us-east-2a"
+                }
+            },
+            "spec": {
+                "metadata": {
+                    "creationTimestamp": null
+                },
+                "providerSpec": {
+                    "value": {
+                        "ami": {
+                            "id": "ami-0649fd5d42859bdfc"
+                        },
+                        "apiVersion": "awsproviderconfig.openshift.io/v1beta1",
+                        "blockDevices": [
+                            {
+                                "ebs": {
+                                    "iops": 0,
+                                    "volumeSize": 120,
+                                    "volumeType": "gp2"
+                                }
+                            }
+                        ],
+                        "credentialsSecret": {
+                            "name": "aws-cloud-credentials"
+                        },
+                        "deviceIndex": 0,
+                        "iamInstanceProfile": {
+                            "id": "ocp4-demo-lnc2v-worker-profile"
+                        },
+                        "instanceType": "p3.2xlarge",
+                        "kind": "AWSMachineProviderConfig",
+                        "metadata": {
+                            "creationTimestamp": null
+                        },
+                        "placement": {
+                            "availabilityZone": "us-east-2a",
+                            "region": "us-east-2"
+                        },
+                        "publicIp": null,
+                        "securityGroups": [
+                            {
+                                "filters": [
+                                    {
+                                        "name": "tag:Name",
+                                        "values": [
+                                            "ocp4-demo-lnc2v-worker-sg"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "subnet": {
+                            "filters": [
+                                {
+                                    "name": "tag:Name",
+                                    "values": [
+                                        "ocp4-demo-lnc2v-private-us-east-2a"
+                                    ]
+                                }
+                            ]
+                        },
+                        "tags": [
+                            {
+                                "name": "kubernetes.io/cluster/ocp4-demo-lnc2v",
+                                "value": "owned"
+                            }
+                        ],
+                        "userDataSecret": {
+                            "name": "worker-user-data"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

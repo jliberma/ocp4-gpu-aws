@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/4yQsW4yMRCE+/8xprYO0f26NkX6FGkiij3fAg4+r7VeQxTEu0c2QkoUJFKt12N/M5ozKIdX1hIkYYRO5AeqthcNn2RB0nD4X4Ygq+N6YqM1HA4hzRjxFGsx1heJDIeFjWYywnhGpIljaSfKGSNId9L+FUmJrcG8LFkSJ7upF4dEC39btUYuGN96wGeVmtsGbByUi1T1XUaWucD1seIP9u3BkXXqolcma/F2bHCIobRxIvN7ONQ8X9XcLzYX98jMS9qG3UK5/LC50m/Y7vIHWG6tF+NkR4l1YR8pLOV+/pkjG9+htrqyyvsQ5JfBSfSwjXK6F/ZRFZvLvy8AAAD//wEAAP//GSCYKBsCAAA="}'
+    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
+  creationTimestamp: "2019-09-13T18:19:06Z"
+  labels:
+    app: argo
+    app.kubernetes.io/deploy-manager: ksonnet
+    ksonnet.io/component: argo
+  name: argo
+  resourceVersion: "37323"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterroles/argo
+  uid: f9036040-d652-11e9-a72e-02e4ddb8e1d8
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pods/exec
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - watch
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - create
+  - delete
+- apiGroups:
+  - argoproj.io
+  resources:
+  - workflowsn  - workflows/finalizers
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch

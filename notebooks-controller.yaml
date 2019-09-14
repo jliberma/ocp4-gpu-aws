@@ -1,0 +1,37 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    ksonnet.io/managed: '{"pristine":"H4sIAAAAAAAA/4SPsU7EMBBEez5jSmRyokNpKegpaFAKJ9kDK86utbsOglP+HSUFoEtBN9Y8P81eEEt6IbUkjBbax6GJ1d9F01f0JNxMD9YkOS33CJgSj2jxmKs56bNkQsBMHsfoEe0FOfaUbUuTCTP59nWQuQgTO1qwOPUi090g7Co5k2IN4DjTn9auaq2ZDO3rvvZJpZbthViKoQtQMqk67AjMo9O5ZiM3BIxUsnzOxL6jC2m/Y7fo1nDlO7pIl7TlgCLj/4Kp9nTO8tGIvh1kP8ch/ObTNrcezd168w0AAP//AQAA//9sk/y7mwEAAA=="}'
+    kubecfg.ksonnet.io/garbage-collect-tag: gc-tag
+  creationTimestamp: "2019-09-13T18:20:49Z"
+  labels:
+    app.kubernetes.io/deploy-manager: ksonnet
+    ksonnet.io/component: notebook-controller
+  name: notebooks-controller
+  resourceVersion: "38290"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterroles/notebooks-controller
+  uid: 362cecf7-d653-11e9-a72e-02e4ddb8e1d8
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - statefulsets
+  - deployments
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - pods
+  verbs:
+  - '*'
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - notebooks
+  - notebooks/status  
+  - notebooks/finalizers
+  verbs:
+  - '*'
