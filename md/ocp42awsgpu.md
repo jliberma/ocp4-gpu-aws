@@ -217,7 +217,7 @@ Roles:              worker
 
 And that’s it! The Machine API lets us define, template, and scale nodes as easily as pods in ReplicaSets. We used the worker MachineSet definition as a template to create a GPU-enabled MachineSet definition with a different AWS instanceType. After we built a new node from this definition, we installed the Node Feature Discovery operator from OperatorHub. It detected the GPU and labeled the node so the GPU can be exposed to OpenShift’s scheduler. Taken together this is a great example of the power and simplicity of full stack automation in OpenShift Container Platform 4.2.
 
-Subsequent blog posts will describe the process for loading GPU drivers and running jobs. The approaches differe slightly depending on whether the GPU drivers and libraries are installed directly to the host or dep;oyed via a pod daemon set.
+Subsequent blog posts will describe the process for loading GPU drivers and running jobs. The approaches differ slightly depending on whether the GPU drivers and libraries are installed directly to the host or dep;oyed via a pod daemon set.
 
 
 ## Resources
