@@ -1,6 +1,6 @@
 # Creating a GPU-enabled node with Red Hat OpenShift Container Platform 4.2 in Amazon EC2
 
-OpenShift Container Platform 4 uses the [Machine API operator](https://github.com/openshift/machine-api-operator) to fully automate infrastructure provisioning. The Machine API provides a flexible, elastic, and scalable provisioning method on top of public or private cloud infrastructure.
+OpenShift Container Platform 4 uses the [Machine API operator](https://github.com/openshift/machine-api-operator) to fully automate infrastructure provisioning. The Machine API provides full stack infrastructure automation on public or private clouds.
 
 With the release of [OpenShift Container Platform 4.2](https://www.redhat.com/en/about/press-releases/red-hat-expands-kubernetes-developer-experience-newest-version-red-hat-openshift-4), administrators can easily define GPU-enabled nodes in EC2 using the Machine API and the Node Feature Discovery operator.
 
