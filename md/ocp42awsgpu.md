@@ -221,7 +221,6 @@ Subsequent blog posts will describe the process for loading GPU drivers and runn
 
 
 ## Resources
-1. AWS Adds Nvidia GPUs: [https://aws.amazon.com/blogs/aws/new-amazon-ec2-instances-with-up-to-8-nvidia-tesla-v100-gpus-p3/]
-2. Accelerated Computing with Nvidia GPU on OpenShift: [https://docs.nvidia.com/datacenter/kubernetes/openshift-on-gpu-install-guide/index.html]
-3. OpenShift 4 Architecture: [https://access.redhat.com/documentation/en-us/openshift_container_platform/4.1/html/architecture/index]
-
+1. AWS Adds Nvidia GPUs: https://aws.amazon.com/blogs/aws/new-amazon-ec2-instances-with-up-to-8-nvidia-tesla-v100-gpus-p3/
+2. Accelerated Computing with Nvidia GPU on OpenShift: https://docs.nvidia.com/datacenter/kubernetes/openshift-on-gpu-install-guide/index.html
+3. OpenShift 4 Architecture: https://access.redhat.com/documentation/en-us/openshift_container_platform/4.1/html/architecture/index
