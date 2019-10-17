@@ -211,7 +211,7 @@ Roles:              worker
                     feature.node.kubernetes.io/pci-1d0f.present=true
 ```
 
-“10DE” is the PCI vendor identification code for NVIDIA. So the NFD operator correctly identified the node from our GPU-enabled MachineSet.
+*10DE* appears in the node feature list for the GPU-enabled node we defined. So the NFD operator correctly identified the node from our GPU-enabled MachineSet.
 
 ## Conclusion
 
