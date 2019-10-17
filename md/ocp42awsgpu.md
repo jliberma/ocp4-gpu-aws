@@ -17,7 +17,7 @@ The Machine/MachineSet abstraction allows OpenShift Container Platform to manage
 
 In this blog post we copy and modify a default worker MachineSet configuration to create a GPU-enabled MachineSet (and Machines) for the AWS EC2 cloud provider. 
 
-**NOTE**: This blog post shows how to deploy a GPU-enabled node running Red Hat Enterprise Linux CoreOS. With OpenShift Container Platform 4.2, GPUs are supported in Red Hat Enterprise Linux (RHEL) 7 nodes only. This process is not supported. Please see the [release notes[(https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html-single/release_notes/index) for details.
+**NOTE**: This blog post shows how to deploy a GPU-enabled node running Red Hat Enterprise Linux CoreOS. With OpenShift Container Platform 4.2, GPUs are supported in Red Hat Enterprise Linux (RHEL) 7 nodes only. This process is not supported. Please see the [release notes](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html-single/release_notes/index) for details.
 
 ## Add a GPU Node
 
