@@ -65,7 +65,7 @@ Notice that we are replacing “worker” with “gpu” in the file name. This 
 
 Edit the JSON file. Make the following changes to the new MachineSet definition:
 
-Change the instance type of the new MachineSet definition to p3, which includes an NVIDIA Tesla V100 GPU. Read more about AWS P3 instance types: [https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing]
+Change the instance type of the new MachineSet definition to p3, which includes an NVIDIA Tesla V100 GPU. Read more about AWS P3 instance types: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
 
 ```
 $ jq .spec.template.spec.providerSpec.value.instanceType openshift-blog-txxtf-gpu-us-east-2a.json
