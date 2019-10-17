@@ -162,11 +162,13 @@ Install the Node Feature Discovery operator from OperatorHub in the OpenShift Co
 
 <p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws1.png">
+</p>
 
 Once the NFD operator is installed into OperatorHub, select “Node Feature Discovery” from the installed operators list and select “Create instance.” This will install the openshift-nfd operator into the openshift-operators namespace.
 
 <p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws2.png">
+</p>
 
 Verify the operator is installed and running.
 
@@ -180,11 +182,13 @@ Next, browse to the installed operator in the console. Select “Create Node Fea
 
 <p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws3.png">
+</p>
 
 Select “Create” to build a NFD Custom Resource. This will create NFD pods in the openshift-nfd namespace that poll the OpenShift nodes for special resources and catalogue them.
 
 <p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws4.png">
+</p>
 
 After a successful build, verify that a NFD pod is running on each nodes.
 
