@@ -8,7 +8,10 @@ These instructions assume that you have OpenShift Container Platform 4 installed
 
 ## Machines and Machine Sets
 
-The Machine API operator defines several custom resources to manage nodes as OpenShift objects. These include Machines and MachineSets.  A *Machine* defines instances with a desired configuration in a given cloud provider. The *MachineSet* ensures that the specified number of machines exist on the provider. A MachineSet can scale machines up and down, providing self-healing functionality for the infrastructure.
+The Machine API operator defines several custom resources to manage nodes as OpenShift objects. These include Machines and MachineSets.
+
+* A *Machine* defines instances with a desired configuration in a given cloud provider. 
+* A *MachineSet* ensures that the specified number of machines exist on the provider. A MachineSet can scale machines up and down, providing self-healing functionality for the infrastructure.
 
 The Machine/MachineSet abstraction allows OpenShift Container Platform to manage nodes the same way it manages pods in replica sets. They can be created, deleted, updated, scaled, and destroyed from the same object definition.
 
