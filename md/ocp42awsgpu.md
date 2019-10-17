@@ -167,7 +167,7 @@ Install the Node Feature Discovery operator from OperatorHub in the OpenShift Co
 
 <kbd><img width="600" border="1px" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws1.png" /></kbd>
 
-Once the NFD operator is installed into OperatorHub, select “Node Feature Discovery” from the installed operators list and select “Create instance.” This will install the *openshift-nfd* operator into the *openshift-operators* namespace.
+Once the NFD operator is installed into OperatorHub, select **Node Feature Discovery** from the installed operators list and select **Create instance**. This will install the *openshift-nfd* operator into the *openshift-operators* namespace.
 
 <kbd><img width="600" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws2.png" /></kbd>
 
@@ -215,9 +215,10 @@ Roles:              worker
 
 ## Conclusion
 
-And that’s it! The Machine API lets us define, template, and scale nodes as easily as pods in ReplicaSets. We used the worker MachineSet definition as a template to create a GPU-enabled MachineSet definition with a different AWS instanceType. After we built a new node from this definition, we installed the Node Feature Discovery operator from OperatorHub. It detected the GPU and labeled the node so the GPU can be exposed to OpenShift’s scheduler. Subsequent blog posts will describe the process for loading GPU drivers and running jobs.
+And that’s it! The Machine API lets us define, template, and scale nodes as easily as pods in ReplicaSets. We used the worker MachineSet definition as a template to create a GPU-enabled MachineSet definition with a different AWS instanceType. After we built a new node from this definition, we installed the Node Feature Discovery operator from OperatorHub. It detected the GPU and labeled the node so the GPU can be exposed to OpenShift’s scheduler. Taken together this is a great example of the power and simplicity of full stack automation in OpenShift Container Platform 4.2.
 
-Taken together this is a great example of the power and simplicity of full stack automation in OpenShift Container Platform 4.2.
+Subsequent blog posts will describe the process for loading GPU drivers and running jobs. The approaches differe slightly depending on whether the GPU drivers and libraries are installed directly to the host or dep;oyed via a pod daemon set.
+
 
 ## Resources
 1. AWS Adds Nvidia GPUs: [https://aws.amazon.com/blogs/aws/new-amazon-ec2-instances-with-up-to-8-nvidia-tesla-v100-gpus-p3/]
