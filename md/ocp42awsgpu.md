@@ -160,10 +160,12 @@ The NFD operator identifies hardware device features in nodes. It solves the gen
 
 Install the Node Feature Discovery operator from OperatorHub in the OpenShift Container Platform console.
 
+<p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws1.png">
 
 Once the NFD operator is installed into OperatorHub, select “Node Feature Discovery” from the installed operators list and select “Create instance.” This will install the openshift-nfd operator into the openshift-operators namespace.
 
+<p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws2.png">
 
 Verify the operator is installed and running.
@@ -176,10 +178,12 @@ nfd-operator-fd55688bd-4rrkq   1/1     Running   0          18m
 
 Next, browse to the installed operator in the console. Select “Create Node Feature Discovery.” 
 
+<p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws3.png">
 
 Select “Create” to build a NFD Custom Resource. This will create NFD pods in the openshift-nfd namespace that poll the OpenShift nodes for special resources and catalogue them.
 
+<p>
 <img align="left" width="300" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws4.png">
 
 After a successful build, verify that a NFD pod is running on each nodes.
