@@ -1,22 +1,24 @@
 # Creating a GPU-enabled node with Red Hat OpenShift Container Platform 4.2 in Amazon EC2
 
-In October of 2017 AWS added support for Nvidia Tesla V100 GPUs in the US-East region. The Nvidia Tesla V100 is a data center GPU built to accelerate deep learning, high performance computing, and graphics processing workloads. With the release of OpenShift Container Platform 4.2, administrators can easily define GPU-enabled nodes in EC2 using the Machine API and the Node Feature Discovery operator.
+OpenShift Container Platform 4 uses the [Machine API operator](https://github.com/openshift/machine-api-operator) to fully automate infrastructure provisioning. The Machine API provides a flexible, elastic, and scalable provisioning method on top of public or private cloud infrastructure.
 
-NOTE: This blog post shows how to deploy a GPU-enabled node running Red Hat Enterprise Linux CoreOS. With OpenShift Container Platform 4.2, GPUs are supported in Red Hat Enterprise Linux (RHEL) 7 nodes only. This process is not supported. Please see the release notes for details.
+With the release of [OpenShift Container Platform 4.2](https://www.redhat.com/en/about/press-releases/red-hat-expands-kubernetes-developer-experience-newest-version-red-hat-openshift-4), administrators can easily define GPU-enabled nodes in EC2 using the Machine API and the Node Feature Discovery operator.
+
+These instructions assume that you have OpenShift Container Platform 4 installed in AWS using the [Installer Provided Infrastructure](https://cloud.redhat.com/openshift/install/aws/installer-provisioned) (IPI) installation method.
 
 ## Machines and Machine Sets
 
-OpenShift Container Platform 4 uses the Machine API operator to fully automate infrastructure provisioning. It provides a flexible, elastic, and scalable provisioning method on top of public or private cloud infrastructure.
-
-The Machine API operator defines several custom resources to manage nodes as OpenShift objects. These include Machines and MachineSets.  A Machine defines instances with a desired configuration in a given cloud provider. The MachineSet ensures that the specified number of machines exist on the provider. A MachineSet can scale machines up and down, providing self-healing functionality for the infrastructure.
+The Machine API operator defines several custom resources to manage nodes as OpenShift objects. These include Machines and MachineSets.  A *Machine* defines instances with a desired configuration in a given cloud provider. The *MachineSet* ensures that the specified number of machines exist on the provider. A MachineSet can scale machines up and down, providing self-healing functionality for the infrastructure.
 
 The Machine/MachineSet abstraction allows OpenShift Container Platform to manage nodes the same way it manages pods in replica sets. They can be created, deleted, updated, scaled, and destroyed from the same object definition.
 
 In this blog post we copy and modify a default worker MachineSet configuration to create a GPU-enabled MachineSet (and Machines) for the AWS EC2 cloud provider. 
 
-These instructions assume that you have OpenShift Container Platform 4 installed in AWS using the Installer Provided Infrastructure (IPI) installation method.
-Add a GPU Node
-First view the existing nodes, machines, and machine sets. 
+**NOTE**: This blog post shows how to deploy a GPU-enabled node running Red Hat Enterprise Linux CoreOS. With OpenShift Container Platform 4.2, GPUs are supported in Red Hat Enterprise Linux (RHEL) 7 nodes only. This process is not supported. Please see the [release notes[(https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html-single/release_notes/index) for details.
+
+## Add a GPU Node
+
+First view the existing nodes, Machines, and MachineSets. 
 
 Each node is an instance of a machine definition with a specific AWS region and OpenShift role.
 
@@ -31,7 +33,7 @@ ip-10-0-166-12.us-east-2.compute.internal    Ready    worker   16m   v1.14.6+c07
 ip-10-0-173-34.us-east-2.compute.internal    Ready    master   21m   v1.14.6+c07e432da
 ```
 
-The Machines and MachineSets exist in the openshift-machine-api namespace. Each worker machine set is associated with a different availability zone within the AWS region. The installer automatically load balances workers across availability zones.
+The Machines and MachineSets exist in the *openshift-machine-api* namespace. Each worker machine set is associated with a different availability zone within the AWS region. The installer automatically load balances workers across availability zones.
 
 ```
 $ oc get machinesets -n openshift-machine-api
@@ -60,7 +62,7 @@ Notice that we are replacing “worker” with “gpu” in the file name. This 
 
 Edit the JSON file. Make the following changes to the new MachineSet definition:
 
-Change the instance type of the new MachineSet definition to p3, which includes an NVIDIA Tesla V100 GPU. Read more about AWS P3 instance types: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
+Change the instance type of the new MachineSet definition to p3, which includes an NVIDIA Tesla V100 GPU. Read more about AWS P3 instance types: [https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing]
 
 ```
 $ jq .spec.template.spec.providerSpec.value.instanceType openshift-blog-txxtf-gpu-us-east-2a.json
@@ -162,7 +164,7 @@ Install the Node Feature Discovery operator from OperatorHub in the OpenShift Co
 
 <kbd><img width="600" border="1px" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws1.png" /></kbd>
 
-Once the NFD operator is installed into OperatorHub, select “Node Feature Discovery” from the installed operators list and select “Create instance.” This will install the openshift-nfd operator into the openshift-operators namespace.
+Once the NFD operator is installed into OperatorHub, select “Node Feature Discovery” from the installed operators list and select “Create instance.” This will install the *openshift-nfd* operator into the *openshift-operators* namespace.
 
 <kbd><img width="600" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws2.png" /></kbd>
 
@@ -174,11 +176,11 @@ NAME                           READY   STATUS    RESTARTS   AGE
 nfd-operator-fd55688bd-4rrkq   1/1     Running   0          18m
 ```
 
-Next, browse to the installed operator in the console. Select “Create Node Feature Discovery.” 
+Next, browse to the installed operator in the console. Select **Create Node Feature Discovery**. 
 
 <kbd><img width="600" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws3.png" /></kbd>
 
-Select “Create” to build a NFD Custom Resource. This will create NFD pods in the openshift-nfd namespace that poll the OpenShift nodes for special resources and catalogue them.
+Select **Create** to build a NFD Custom Resource. This will create NFD pods in the *openshift-nfd* namespace that poll the OpenShift nodes for hardware resources and catalogue them.
 
 <kbd><img width="400" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws4.png" /></kbd>
 
@@ -215,7 +217,7 @@ And that’s it! The Machine API lets us define, template, and scale nodes as ea
 Taken together this is a great example of the power and simplicity of full stack automation in OpenShift Container Platform 4.2.
 
 ## Resources
-AWS Adds Nvidia GPUs: https://aws.amazon.com/blogs/aws/new-amazon-ec2-instances-with-up-to-8-nvidia-tesla-v100-gpus-p3/
-Accelerated Computing with Nvidia GPU on OpenShift https://docs.nvidia.com/datacenter/kubernetes/openshift-on-gpu-install-guide/index.html
-OpenShift 4 Architecture https://access.redhat.com/documentation/en-us/openshift_container_platform/4.1/html/architecture/index
+1. AWS Adds Nvidia GPUs: [https://aws.amazon.com/blogs/aws/new-amazon-ec2-instances-with-up-to-8-nvidia-tesla-v100-gpus-p3/]
+2. Accelerated Computing with Nvidia GPU on OpenShift: [https://docs.nvidia.com/datacenter/kubernetes/openshift-on-gpu-install-guide/index.html]
+3. OpenShift 4 Architecture: [https://access.redhat.com/documentation/en-us/openshift_container_platform/4.1/html/architecture/index]
 
