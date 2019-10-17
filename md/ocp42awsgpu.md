@@ -185,7 +185,7 @@ Next, browse to the installed operator in the console. Select **Create Node Feat
 
 Select **Create** to build a NFD Custom Resource. This will create NFD pods in the *openshift-nfd* namespace that poll the OpenShift nodes for hardware resources and catalogue them.
 
-<kbd><img width="400" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws4.png" /></kbd>
+<kbd><img width="600" src="https://github.com/jliberma/ocp4-gpu-aws/blob/master/md/images/aws4.png" /></kbd>
 
 After a successful build, verify that a NFD pod is running on each nodes.
 
